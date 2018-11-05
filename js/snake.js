@@ -163,6 +163,7 @@ function keyPressed() {
   }
 }
 
-var player = new Tone.Player("Downloads/Sonic the Hedgehog Title & Green Hill Zone Themes (Otamatone cover).mp3").toMaster();
-//play as soon as the buffer is loaded
-player.autostart = true;
+var player = new Tone.Player({
+	"https://www.youtube.com/watch?v=KDwiu0w05Z8" : "./path/to/sample.mp3",
+	"autostart" : true,
+}).toMaster();
