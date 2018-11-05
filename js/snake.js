@@ -14,6 +14,8 @@ var xFruit = 0;
 var yFruit = 0;
 var scoreElem;
 
+var snakeColor = 'white';
+
 function setup() {
   scoreElem = createDiv('Score = 0');
   scoreElem.position(20, 20);
@@ -22,8 +24,6 @@ function setup() {
 
   createCanvas(500, 500);
   frameRate(15);
-  stroke(255);
-  strokeWeight(10);
   updateFruitCoordinates();
 
   for (var i = 0; i < numSegments; i++) {
@@ -34,6 +34,8 @@ function setup() {
 
 function draw() {
   background(0);
+  stroke(snakeColor);
+  strokeWeight(10);
   for (var i = 0; i < numSegments - 1; i++) {
     line(xCor[i], yCor[i], xCor[i + 1], yCor[i + 1]);
   }
@@ -124,6 +126,32 @@ function checkForFruit() {
     yCor.unshift(yCor[0]);
     numSegments++;
     updateFruitCoordinates();
+
+    var randVal = Math.floor((Math.random() * 5) + 1);
+    console.log(random);
+
+    switch (randVal) {
+
+      case 1:
+      snakeColor = 'white';
+      break;
+
+      case 2:
+      snakeColor = 'blue';
+      break;
+
+      case 3:
+      snakeColor = 'green';
+      break;
+
+      case 4:
+      snakeColor = 'orange';
+      break;
+
+      case 5:
+      snakeColor = 'brown';
+      break;
+    }
   }
 }
 
@@ -162,8 +190,3 @@ function keyPressed() {
       break;
   }
 }
-
-var player = new Tone.Player({
-	"https://www.youtube.com/watch?v=KDwiu0w05Z8" : "./path/to/sample.mp3",
-	"autostart" : true,
-}).toMaster();
