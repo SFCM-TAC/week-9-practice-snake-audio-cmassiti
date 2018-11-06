@@ -16,6 +16,17 @@ var scoreElem;
 
 var snakeColor = 'white';
 
+var gameOver = new Tone.Player("./sounds/8 Bit Game Over Sound 2.mp3").toMaster();
+//play as soon as the buffer is loaded
+
+var powerUp = new Tone.Player("./sounds/8 Bit Power Up Sound.mp3").toMaster();
+//play as soon as the buffer is loaded
+
+var player = new Tone.Player("./sounds/Green Hill Zone.mp3").toMaster();
+//play as soon as the buffer is loaded
+player.autostart = true;
+player.loop = true;
+
 function setup() {
   scoreElem = createDiv('Score = 0');
   scoreElem.position(20, 20);
@@ -93,6 +104,7 @@ function checkGameStatus() {
       yCor[yCor.length - 1] < 0 ||
       checkSnakeCollision()) {
     noLoop();
+    gameOver.start();
     var scoreVal = parseInt(scoreElem.html().substring(8));
     scoreElem.html('Game ended! Your score was : ' + scoreVal);
   }
@@ -152,6 +164,7 @@ function checkForFruit() {
       snakeColor = 'brown';
       break;
     }
+    powerUp.start();
   }
 }
 
